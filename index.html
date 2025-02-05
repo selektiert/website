@@ -1,149 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selektiert – Verein zur Förderung von Musik, Kunst und Kulinarik</title>
+    <title>Selektiert</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!DOCTYPE html>
+<head>
     <style>
         body {
-            font-family: "Breul Grotesk", sans-serif;
+            font-family: 'Breul Grotesk', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ffe137;
-            color: #000;
+            overflow-x: hidden;
         }
-        header {
-            text-align: center;
+        .navbar {
+            background-color: #ffe137;
             padding: 1rem;
-            background-color: #ffe137;
         }
-        header img {
-            width: 150px;
+        .navbar-brand img {
+            width: 120px;
             height: auto;
         }
-        nav {
+        .nav-link {
+            color: #000;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        .nav-link:hover {
+            color: #d30505;
+        }
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffe137; /* Keep a background color in case the image fails */
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .section {
+            padding: 6rem 2rem;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
+        }
+        .about-content, .upcoming-content, .past-content, .music-content, .food-content, .art-content, .contact-content {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .team-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 3px solid #ececec;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: #fff;
+            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1), 0 15px 12px rgba(0, 0, 0, 0.02);
+            max-width: 300px;
+            margin: 20px auto;
+        }
+        .team-container img {
+            width: 150px;
+            height: auto;
+            border-radius: 50%;
+            border: 3px solid #ffe137;
+            margin-bottom: 15px;
+        }
+        #teamsocial {
             display: flex;
             justify-content: center;
-            background-color: #000;
+            gap: 10px;
         }
-        nav a {
-            text-decoration: none;
+        #teamsocial a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ffe137;
+            border-radius: 50%;
+            font-size: 18px;
             color: #ffe137;
-            padding: 1rem;
-            margin: 0 0.5rem;
-            font-weight: bold;
+            transition: 0.3s ease;
         }
-        nav a:hover {
+        #teamsocial a:hover {
             background-color: #ffe137;
             color: #000;
         }
-        .content {
-            padding: 2rem;
-            display: none;
-        }
-        .content.active {
-            display: block;
-        }
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #000;
-            color: #ffe137;
-            margin-top: 2rem;
-        }
-        .lang-switch {
-            display: flex;
-            justify-content: flex-end;
-            padding: 0.5rem;
-            background-color: #000;
-        }
-        .lang-switch button {
-            background: none;
-            border: none;
-            color: #ffe137;
-            font-size: 1rem;
-            margin: 0 0.5rem;
-            cursor: pointer;
-        }
-        .lang-switch button.active {
-            text-decoration: underline;
-        }
+
     </style>
 </head>
 <body>
-    <header>
-        <img src="SELEKTIERT.png" alt="Selektiert Logo">
-    </header>
-    <div class="lang-switch">
-        <button class="lang-btn active" data-lang="de">Deutsch</button>
-        <button class="lang-btn" data-lang="en">English</button>
-    </div>
-    <nav>
-        <a href="#verein" class="tab-btn" data-tab="verein">Der Verein</a>
-        <a href="#musik" class="tab-btn" data-tab="musik">Musik</a>
-        <a href="#kunst" class="tab-btn" data-tab="kunst">Kunst</a>
-        <a href="#kulinarik" class="tab-btn" data-tab="kulinarik">Kulinarik</a>
-        <a href="#sponsoren" class="tab-btn" data-tab="sponsoren">Sponsoren</a>
-        <a href="#team" class="tab-btn" data-tab="team">Team</a>
-        <a href="#impressum" class="tab-btn" data-tab="impressum">Impressum</a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#main">
+                <img src="SRC/Banner.png" alt="Selektiert Logo" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#upcoming">Upcoming</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#past">Past</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#music">Music</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#food">Food</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#art">Art</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <main>
-        <section id="verein" class="content active">
-            <h2>Der Verein</h2>
-            <p>§ 2: Zweck ...</p>
-            <p>Placeholder for "Who we are" in English or German...</p>
-        </section>
-        <section id="musik" class="content">
-            <h2>Musik</h2>
-            <p>Lorem ipsum content for music (replace this text).</p>
-        </section>
-        <section id="kunst" class="content">
-            <h2>Kunst</h2>
-            <p>Lorem ipsum content for art (replace this text).</p>
-        </section>
-        <section id="kulinarik" class="content">
-            <h2>Kulinarik</h2>
-            <p>Lorem ipsum content for culinary arts (replace this text).</p>
-        </section>
-        <section id="sponsoren" class="content">
-            <h2>Sponsoren</h2>
-            <p>Lorem ipsum content for sponsors (replace this text).</p>
-        </section>
-        <section id="team" class="content">
-            <h2>Team</h2>
-            <p>Lorem ipsum content for team members (replace this text).</p>
-        </section>
-        <section id="impressum" class="content">
-            <h2>Impressum</h2>
-            <p>Lorem ipsum content for legal information (replace this text).</p>
-        </section>
-    </main>
+    <!-- Hero Section -->
+    <section id="main" class="hero-section" class="img-fluid">
+        <img src="SRC/SELEKTIERT.png" alt="Placeholder Animation", class="img-fluid">
+    </section>
 
-    <footer>
-        &copy; 2025 SELEKTIERT_  All rights reserved.
-    </footer>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+            <p>SELEKTIERT_ is a Vienna-based collective dedicated to fostering creative talents and projects in the fields of art, music, and gastronomy.
+            </p>
+            <p>Our vision is to support young individuals in realizing their creative ideas and taking the leap into visibility – whether it’s bringing their music to the stage, presenting their art to a culture-savvy audience, or executing extraordinary culinary concepts.
+            </p>
+            <p>We provide not only organizational support but also resources, networks, and strategic advisory expertise. From supplying equipment and managing logistics to offering curatorial and conceptual guidance for events – we create the stage where creativity and passion can shine.
+            </p>
+            <p>We place great value on carefully thought-out concepts: bringing together the right artists, musicians, chefs, and personalities to craft unique experiences. Our community, comprised of association members and a steadily growing network of venues, partners, talents, and culture enthusiasts, is the heart of our work.
+            </p>
+        </div>
+    </section>
 
-    <script>
-        // Tab Navigation
-        const tabs = document.querySelectorAll('.tab-btn');
-        const contents = document.querySelectorAll('.content');
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                contents.forEach(content => content.classList.remove('active'));
-                tabs.forEach(t => t.classList.remove('active'));
-                document.getElementById(tab.dataset.tab).classList.add('active');
-                tab.classList.add('active');
-            });
+    <!-- Upcoming Section -->
+    <section id="upcoming" class="section">
+        <h2 class="section-title">Upcoming Events</h2>
+        <div class="upcoming-content">
+            <p>Stay tuned for our exciting upcoming events. Check back soon!</p>
+        </div>
+    </section>
+
+        <!-- Past Section -->
+    <section id="past" class="section">
+        <h2 class="section-title">Past Events</h2>
+        <div class="past-content">
+            <p>Here are some of our memorable past events showcasing music, food, and art collaborations.</p>
+        </div>
+    </section>
+
+    <section id="team" class="section teams">
+    <h2 class="section-title">Our Team</h2>
+    <div id="customers-teams" class="owl-carousel owl-theme">
+        <!-- Team Member 1 -->
+        <div class="team-container">
+            <img src="SRC/team/default.jpg" alt="Team Member 1">
+           <h2>Member 1</h2>
+            <h5>Position 1</h5>
+            <p>Short bio or description of the team msdafasdfasdfasdffd asfdsa ffdsfas sdffsddfember. </p>
+            <div id="teamsocial">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="team-container">
+            <div class="shadow-effect">
+                <img class="img-circle" src="SRC/team/default.jpg" alt="Team Member 2">
+                <h2>Member 2</h2>
+                <h5>Position 2</h5>
+                <p>Short description or bio about team member 2.</p>
+                <div id="teamsocial">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="team-container">
+            <div class="shadow-effect">
+                <img class="img-circle" src="SRC/team/default.jpg" alt="Team Member 2">
+                <h2>Member 3</h2>
+                <h5>Position 3</h5>
+                <p>Short description or bio about team member 2.</p>
+                <div id="teamsocial">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="team-container">
+            <div class="shadow-effect">
+                <img class="img-circle" src="SRC/team/default.jpg" alt="Team Member 2">
+                <h2>Member 4</h2>
+                <h5>Position 4</h5>
+                <p>Short description or bio about team member 2.</p>
+                <div id="teamsocial">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more team members as needed -->
+    </div>
+</section>
+
+
+    <!-- Music Section
+    <section id="music" class="section">
+        <h2 class="section-title">Music</h2>
+        <div class="music-content">
+            <p>We promote emerging musicians and artists through live performances and collaborations.</p>
+        </div>
+    </section>
+
+
+    <section id="food" class="section">
+        <h2 class="section-title">Food</h2>
+        <div class="food-content">
+            <p>Our events feature creative culinary talents and upcoming chefs, offering unique dining experiences.</p>
+        </div>
+    </section>
+
+
+    <section id="art" class="section">
+        <h2 class="section-title">Art</h2>
+        <div class="art-content">
+            <p>Experience innovative art installations, exhibitions, and creative expressions by talented artists.</p>
+        </div>
+    </section>
+-->
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-content">
+            <p>Have questions or want to collaborate? Reach out to us at <a href="mailto:selektiert.verein@gmail.com">selektiert.verein@gmail.com</a>.</p>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+     <script>
+         $(document).ready(function(){
+             $('#customers-teams').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: true,
+                center: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+            }
         });
+    });
 
-        // Language Switch
-        const langButtons = document.querySelectorAll('.lang-btn');
-        langButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                langButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                // Add logic for switching content languages
+
+        // Smooth scrolling with offset for the fixed navbar
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                const offset = 80; // Adjust for navbar height
+                const position = targetSection.offsetTop - offset;
+                window.scrollTo({
+                    top: position,
+                    behavior: 'smooth'
+                });
+
+                // Close dropdown menu if open
+                const navCollapse = document.querySelector('.navbar-collapse');
+                if (navCollapse.classList.contains('show')) {
+                    new bootstrap.Collapse(navCollapse).toggle();
+                }
             });
         });
     </script>
