@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: yourusername/yourrepo  # Replace with your GitHub repo
+  repo: selektiert/website  # Replace with your GitHub repo
   branch: main
 
 media_folder: "SRC"  # where uploaded files/images go
