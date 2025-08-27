@@ -3,11 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <title>Content Manager</title>
-    <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
+    <script src="https://unpkg.com/netlify-cms@^2.15.0/dist/netlify-cms.js"></script>
   </head>
   <body>
-    <p>test</p>
-    <!-- CMS will auto-initialize based on /admin/config.yml -->
+    <script>
+      if (typeof CMS !== "undefined") {
+        CMS.init();
+      } else {
+        console.error("Netlify CMS failed to load");
+      }
+    </script>
   </body>
 </html>
 
